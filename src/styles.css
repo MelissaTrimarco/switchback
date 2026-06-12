@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+
+/* ── Design tokens ─────────────────────────────────────── */
+:root {
+  /* New palette — coral / sage / cream */
+  --coral:        #F5375C;   /* hot coral — primary CTA, GPS marker      */
+  --coral-deep:   #D42B4F;
+  --salmon:       #F87A8C;   /* soft salmon — secondary accent            */
+  --sage:         #A8D87A;   /* sage green — nature / trail               */
+  --sage-deep:    #8AB85F;
+  --mint-bg:      #F0F9DC;   /* cream mint — page background              */
+
+  /* Per-page UI anchor colors */
+  --violet:       #901DF5;   /* Home, Profile pages                       */
+  --violet-deep:  #7315C4;
+  --violet-soft:  #A94FF7;
+  --blue:         #1184CE;   /* Live Ride, Chat pages                     */
+  --blue-deep:    #0A5F96;
+  --blue-soft:    #6FBBF2;
+  --green-a:      #2E9E3F;   /* Trip, Packing, Expenses pages             */
+  --green-deep:   #1F7A2D;
+
+  /* Neutrals */
+  --navy:         #2A0F47;   /* deep violet-ink text on light accents     */
+  --navy-deep:    #1C0A30;
+  --charcoal:     #241038;   /* primary text                              */
+  --amber:        #FFDE05;   /* golden yellow — alerts                    */
+
+  /* Legacy aliases (keep screens working unchanged) */
+  --pine:         var(--violet);
+  --pine-deep:    var(--violet-deep);
+  --pine-soft:    var(--violet-soft);
+  --raspberry:    var(--coral);
+  --raspberry-deep: var(--coral-deep);
+  --sky:          var(--blue);
+  --sky-soft:     var(--salmon);
+  --lime:         var(--sage);
+  --lime-deep:    var(--sage-deep);
+
+  /* Surfaces */
+  --bg:           var(--mint-bg);
+  --surface:      #ffffff;
+  --surface-2:    #F7FBEA;
+  --border:       #DDE4C2;
+  --offwhite:     var(--mint-bg);
+  --cream:        #F7FBEA;
+  --stone:        #E2ECC4;
+  --stone-deep:   #C5D49A;
+
+  /* Text */
+  --text:         var(--charcoal);
+  --text-2:       #4A5568;
+  --text-3:       #8A92A1;
+
+  /* Typography */
+  --f-display:    'Outfit', system-ui, sans-serif;
+  --f-editorial:  'Instrument Serif', Georgia, serif;
+  --f-body:       'Inter', -apple-system, system-ui, sans-serif;
+  --f-mono:       'Geist Mono', ui-monospace, monospace;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--f-body);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Screen shell ──────────────────────────────────────── */
+.screen {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Typography utilities ──────────────────────────────── */
+.display {
+  font-family: var(--f-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.editorial {
+  font-family: var(--f-editorial);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mono { font-family: var(--f-mono); }
+
+.eyebrow {
+  font-family: var(--f-body);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--pine);
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn-primary {
+  background: var(--raspberry);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 16px -4px rgba(245,55,92,0.45);
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-primary:hover  { background: var(--raspberry-deep); }
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-ghost:hover { background: var(--stone); }
+
+/* ── Chips ─────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: background 0.12s;
+}
+.chip-active {
+  background: var(--pine);
+  color: var(--anchor-ink, #fff);
+  border-color: var(--pine);
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+/* ── Scroll ────────────────────────────────────────────── */
+.scrollarea          { overflow-y: auto; scrollbar-width: none; }
+.scrollarea::-webkit-scrollbar { display: none; }
+
+/* ── Tab bar ───────────────────────────────────────────── */
+.tabbar {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 8px 14px 22px;
+  background: linear-gradient(180deg, transparent, var(--bg) 30%);
+  display: flex;
+  justify-content: space-around;
+  z-index: 5;
+}
+.tabbar-pill {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px;
+  box-shadow: 0 8px 24px -8px rgba(30,58,95,0.14);
+  gap: 2px;
+  width: 100%;
+}
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tab svg { width: 18px; height: 18px; }
+.tab-active {
+  background: var(--pine);
+  color: var(--anchor-ink, #fff);
+}
+.tab-active svg path,
+.tab-active svg circle,
+.tab-active svg rect { stroke: var(--anchor-ink, #fff); }
+
+/* ── Photo fallback / placeholder ─────────────────────── */
+.photo-fallback {
+  background:
+    radial-gradient(at 30% 20%, rgba(168,216,122,0.45), transparent 50%),
+    radial-gradient(at 80% 70%, rgba(245,55,92,0.45), transparent 50%),
+    linear-gradient(135deg, var(--pine) 0%, var(--navy) 70%, var(--navy-deep) 100%);
+  position: relative;
+}
+.photo-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 24px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.06) 0 2px, transparent 2px 24px);
+}
+
+/* ── Topo contour texture ──────────────────────────────── */
+.topo {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, currentColor 41%, transparent 42%),
+    radial-gradient(ellipse 65% 48% at 50% 50%, transparent 40%, currentColor 41%, transparent 42%),
+    radial-gradient(ellipse 50% 36% at 50% 50%, transparent 40%, currentColor 41%, transparent 42%),
+    radial-gradient(ellipse 35% 24% at 50% 50%, transparent 40%, currentColor 41%, transparent 42%);
+  color: rgba(30,58,95,0.08);
+}
+
+/* ── Avatar ────────────────────────────────────────────── */
+.avatar {
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sky), var(--pine));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes pulse {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
